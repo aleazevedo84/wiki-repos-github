@@ -13,7 +13,6 @@ function App() {
   const [currentRepo, setCurrentRepo] = useState('');
   const [repos, setRepos] = useState([]);
 
-
   const handleSearchRepo = async () => {
 
     const {data} = await api.get(`repos/${currentRepo}`)
@@ -27,18 +26,18 @@ function App() {
         setCurrentRepo('')
         return
       }
-
+      else {
+        alert('Repositório já adicionado')
+        return
+      }
     }
     alert('Repositório não encontrado')
-
   }
 
   const handleRemoveRepo = (id) => {
-    console.log('Removendo registro', id);
-
-    // utilizar filter.
+    let listaFiltrada = repos.filter((repo) => repo.id !== id)
+    setRepos(listaFiltrada)
   }
-
 
   return (
     <Container>
